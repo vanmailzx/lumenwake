@@ -1,0 +1,1 @@
+withheld: Codex CLI 0.44.0 does not expose its built-in system prompt; it is compiled into the vendor binary and is not present in the session logs or config.

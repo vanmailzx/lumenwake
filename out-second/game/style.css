@@ -1,0 +1,9 @@
+:root { color-scheme: dark; font-family: Manrope, system-ui, sans-serif; background: #080d20; }
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 320px; min-height: 100vh; display: grid; place-items: center; overflow: hidden; background: radial-gradient(ellipse at 50% 48%, #151b39 0%, #0a1025 55%, #070a17 100%); }
+#frame { position: relative; width: min(100vw, 177.7778vh); aspect-ratio: 16 / 9; overflow: hidden; box-shadow: 0 30px 100px #02040bbb, 0 0 80px #5467ff12; }
+canvas { width: 100%; height: 100%; display: block; }
+.corner-mark,.sound-mark { position: absolute; top: 24px; color: #8190b7; font: 500 10px 'DM Mono', monospace; letter-spacing: .18em; pointer-events: none; }
+.corner-mark { left: 28px; }
+.sound-mark { right: 28px; color: #a2accb; }
+@media (max-width: 700px) { .corner-mark,.sound-mark { top: 12px; font-size: 7px; } .corner-mark { left: 12px; } .sound-mark { right: 12px; } }

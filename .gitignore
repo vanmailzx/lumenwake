@@ -1,0 +1,5 @@
+codex-run*.log
+out/
+out1/
+out2/
+.makefun/freshness.json

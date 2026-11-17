@@ -1,6 +1,6 @@
 [
   { "name": "1-lumenwake.jpg", "query": "?shot=title&seed=1" },
   { "name": "2-echo-garden.jpg", "query": "?shot=play&seed=23" },
-  { "name": "3-the-watcher.jpg", "query": "?shot=boss&seed=91" },
+  { "name": "3-the-choir.jpg", "query": "?shot=boss&seed=91" },
   { "name": "4-dawn-returned.jpg", "query": "?shot=victory&seed=4" }
 ]

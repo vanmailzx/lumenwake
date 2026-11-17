@@ -53,4 +53,20 @@ Aim: build above 4-strong quality — polished, multi-file, sound, particles, fu
 
 ## Log
 - 2026-11-17 ~07:20Z: requirements fetched, kit unpacked, env verified, coarena proxy restarted, codex verified.
-- 2026-11-17: Codex authoring session started in /root/makefun/bestgame-entry (task in codex-task.md).
+- Codex session 01a1e6a2 (gpt-6-luna, 97 turns): kit init anchor 48abeea44e31a6559ddf40fe2adb7dd6b4c7f948 (drand 34022473)
+  quoted before first write; built Lumenwake (star-garden survival, echo-wake mechanic), 14 game files + main.ts;
+  main.ts revised across 5 assistant messages (apply_patch); proxy crashes fixed (BrokenPipe guard, empty-content filter).
+- Screenshots: 4 distinct 1280x720 JPEGs (22-32 KB) — title/play/boss/victory, full loop visible (verified by eye).
+- main.ts determinism: two runs diff -r clean. node --check all modules clean.
+- GitHub: vanmailzx/lumenwake public @ 7ce3ee45ae3666415a0539889a01e08e24433d77; README 3 badges; About homepage=bounty URL + topic makefun; .makefun/owner.json (68VQ9X...).
+- Bundle: lumenwake-bundle.tar.gz (sha256 f613072b...) — 1 codex session, run record OK.
+- Kit check: 15 passed / 0 failed / 6 skipped; entry classified source-bundle (anchor root) → submit via submit --source.
+- Known risk: rollout token_count info=null (no usage records); local thinking_priced passed with "no usage record to price".
+
+## SUBMITTED
+- 2026-11-17T00:05Z: HTTP 202 accepted, submission 01a1e6d2-4e30-7213-8e49-4742e882cc48, title
+  "A small light against the long night: a star-garden survival story", source bundle
+  sha256 21aa93aa533de576c3f26c59482851aba50aa224d8d02b4749443280b06df08d, signed by 68VQ9X...
+- Intake checks so far: account_wallet / competition_open / quota / form / entry_signature / source_bundle all PASS.
+  Snapshot-stage checks (repo_owner, license_osi, anchor, commit_in_repo) pending — all verified locally by kit check.
+- Claim code AF-VTSTQ-5EPP3-G0MCF-TFF3N. Quota after submit: ~2 left today. Poll status; deadline 2026-11-18T18:00Z.

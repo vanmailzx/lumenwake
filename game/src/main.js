@@ -5,6 +5,8 @@ import { makeRng } from './rng.js';
 import { drawGame } from './render.js';
 import { prepareShot } from './shots.js';
 import { createWorld, startRun, updateWorld } from './world.js';
+import { applyUpgrade } from './upgrades.js';
+import { resumeAfterUpgrade } from './waves.js';
 
 const canvas = document.querySelector('#game');
 canvas.width = WIDTH; canvas.height = HEIGHT;
@@ -25,12 +27,16 @@ function render() {
   if (shotMode) window.__shotReady = true;
 }
 
-if (shotMode) {
+  if (shotMode) {
   render();
 } else {
   canvas.addEventListener('pointerdown', () => {
-    if (world.status === 'title' || world.status === 'gameover' || world.status === 'victory') startRun(world);
+    if (world.status === 'title' || world.status === 'gameover' || world.status === 'victory' || world.status === 'ending') startRun(world);
     else if (world.status === 'paused') world.status = 'playing';
+    else if (world.status === 'upgrade') {
+      const index = Math.max(0, Math.min(2, Math.floor((input.state.x - 144) / 277)));
+      applyUpgrade(world, world.upgradeChoices?.[index]?.id); resumeAfterUpgrade(world);
+    }
     audio.unlock();
   });
   function frame(now) {
@@ -43,12 +49,22 @@ if (shotMode) {
     if (input.state.audio) { input.state.audio = false; audio.toggle(); }
     if (input.state.confirm) {
       input.state.confirm = false;
-      if (world.status === 'title' || world.status === 'gameover' || world.status === 'victory') startRun(world);
+      if (world.status === 'title' || world.status === 'gameover' || world.status === 'victory' || world.status === 'ending') startRun(world);
       else if (world.status === 'paused') world.status = 'playing';
+      else if (world.status === 'upgrade' && world.upgradeChoices?.[0]) {
+        applyUpgrade(world, world.upgradeChoices[0].id); resumeAfterUpgrade(world);
+      }
       audio.unlock();
+    }
+    if (input.state.choice) {
+      const index = input.state.choice - 1; input.state.choice = 0;
+      if (world.status === 'upgrade' && world.upgradeChoices?.[index]) {
+        applyUpgrade(world, world.upgradeChoices[index].id); resumeAfterUpgrade(world);
+      }
     }
     while (accumulator >= STEP) {
       updateWorld(world, input, audio, STEP);
+      if (['title', 'paused', 'upgrade'].includes(world.status)) world.elapsed += STEP;
       accumulator -= STEP;
     }
     render(); frameHandle = requestAnimationFrame(frame);

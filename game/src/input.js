@@ -1,6 +1,6 @@
 export function createInput(canvas) {
   const keys = new Set();
-  const state = { x: 640, y: 360, pointer: false, fire: false, dash: false, pause: false, confirm: false, audio: false };
+  const state = { x: 640, y: 360, pointer: false, fire: false, dash: false, pause: false, confirm: false, audio: false, choice: 0 };
   window.addEventListener('keydown', event => {
     const key = event.key.toLowerCase();
     if (['arrowup', 'arrowdown', 'arrowleft', 'arrowright', ' '].includes(key)) event.preventDefault();
@@ -8,6 +8,7 @@ export function createInput(canvas) {
       if (key === 'escape' || key === 'p') state.pause = true;
       if (key === 'enter' || key === ' ') state.confirm = true;
       if (key === 'm') state.audio = true;
+      if (['1', '2', '3'].includes(key)) state.choice = Number(key);
     }
     keys.add(key);
   });
